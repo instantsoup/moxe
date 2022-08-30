@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Patient {
 
@@ -13,7 +15,14 @@ public class Patient {
 	private String name;
 	@ManyToOne
 	@JoinColumn(name = "provider_id")
+	@JsonIgnore
 	private Provider provider;
+	
+	Patient() {};
+	
+	public Patient(String name) {
+		this.name = name;
+	}
 
 	public Long getId() {
 		return id;

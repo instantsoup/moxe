@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Provider {
 	
@@ -16,9 +18,11 @@ public class Provider {
 	private String name;
 	@ManyToOne
 	@JoinColumn(name = "hospital_id")
+	@JsonIgnore
 	private Hospital hospital;
+
 	@OneToMany(mappedBy = "provider")
-	List<Patient> patients;
+	private List<Patient> patients;
 	
 	Provider() {};
 	
